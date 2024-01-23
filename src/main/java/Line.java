@@ -29,6 +29,9 @@ public class Line extends Figure implements Serializable {
 
     @Override
     public void paint(Graphics g) {
-        g.drawLine();
+        g.drawLine(
+                start.getX(),
+                start.getY()
+        );
     }
 }

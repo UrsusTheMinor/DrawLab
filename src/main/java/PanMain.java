@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.io.*;
 
 public class PanMain extends JPanel {
+
     private FigureManagement figures;
     private Figure current_figure;
     private int figure_type;

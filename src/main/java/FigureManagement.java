@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class FigureManagement implements Serializable {
+
     ArrayList<Figure> figures, selected_figures;
 
     FigureManagement(){

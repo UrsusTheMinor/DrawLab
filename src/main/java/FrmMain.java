@@ -5,7 +5,6 @@ import java.awt.event.*;
 
 public class FrmMain extends JFrame {
 
-
     private static final int BIN = 0;
     private static final int TXT = 1;
 
@@ -114,16 +113,26 @@ public class FrmMain extends JFrame {
         menFile.addSeparator();
         menFile.add(miExit);
 
-
         JMenu menOptions = new JMenu("Options");
-
         JMenu menType = new JMenu("Type");
 
         JRadioButton miPoint = new JRadioButton("Point");
         JRadioButton miLine = new JRadioButton("Line");
         JRadioButton miCircle = new JRadioButton("Circle");
         JRadioButton miRectangle = new JRadioButton("Rectangle");
+
+        ButtonGroup bgType = new ButtonGroup();
+        bgType.add(miPoint);
+        bgType.add(miLine);
+        bgType.add(miCircle);
+        bgType.add(miRectangle);
         miRectangle.setSelected(true);
+        panMain.setFigureType(Figure.RECTANGLE);
+
+        menType.add(miPoint);
+        menType.add(miLine);
+        menType.add(miCircle);
+        menType.add(miRectangle);
 
         miPoint.addActionListener(new ActionListener() {
             @Override
@@ -153,19 +162,6 @@ public class FrmMain extends JFrame {
             }
         });
 
-
-        ButtonGroup bgType = new ButtonGroup();
-        bgType.add(miPoint);
-        bgType.add(miLine);
-        bgType.add(miCircle);
-        bgType.add(miRectangle);
-
-        menType.add(miPoint);
-        menType.add(miLine);
-        menType.add(miCircle);
-        menType.add(miRectangle);
-
-
         JMenuItem miColor = new JMenuItem("Color");
         miColor.addActionListener(new ActionListener() {
             @Override
@@ -181,11 +177,8 @@ public class FrmMain extends JFrame {
         mbMain.add(menOptions);
 
         setJMenuBar(mbMain);
-
         setContentPane(panMain);
-
         setVisible(true);
-
     }
 
     public void save(int type) {

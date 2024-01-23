@@ -3,6 +3,7 @@ import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
 public class Point implements Serializable {
+
     private int x,y;
     private boolean isSelected;
     public static final int SIZE = 10;

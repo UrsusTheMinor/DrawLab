@@ -20,8 +20,8 @@ public class Circle extends Figure implements Serializable {
         } else if(center.inPoint(last_e)){
             center.move(last_e, current_e);
         } if(inFigure(last_e)) {
-            points.get(0).move(last_e, current_e);
-            points.get(1).move(last_e, current_e);
+            center.move(last_e, current_e);
+            radius.move(last_e, current_e);
         }
     }
 
@@ -38,8 +38,8 @@ public class Circle extends Figure implements Serializable {
     }
 
     public int getRadius() {
-        int dx = center.getX() - center.getY();
-        int dy = radius.getX() - radius.getY();
+        int dx = center.getX() - radius.getX();
+        int dy = center.getY() - radius.getY();
 
         return (int) Math.round(Math.sqrt(dx * dx + dy * dy));
     }

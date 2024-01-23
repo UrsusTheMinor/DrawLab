@@ -3,7 +3,9 @@ import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
 public class Line extends Figure implements Serializable {
+
     Point start, center, end;
+
     Line(MouseEvent e){
         super();
         start = new Point(e);

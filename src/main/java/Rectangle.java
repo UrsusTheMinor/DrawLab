@@ -19,18 +19,39 @@ public class Rectangle extends  Figure implements Serializable {
     }
 
     public void paint(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.drawRect(tl.getX() - SIZE / 2, br.getY() - SIZE / 2, SIZE, SIZE);
 
+        // Draw lines between points
+        g.drawLine(tl.getX(), tl.getY(), tr.getX(), tr.getY());
+        g.drawLine(tr.getX(), tr.getY(), br.getX(), br.getY());
+        g.drawLine(br.getX(), br.getY(), bl.getX(), bl.getY());
+        g.drawLine(bl.getX(), bl.getY(), tl.getX(), tl.getY());
+
+        // Paint points
+        tl.paint(g);
+        tr.paint(g);
+        bl.paint(g);
+        br.paint(g);
     }
 
-    public boolean inFigure(MouseEvent e){
-        return inPoint(e) != null;
+    public boolean inFigure(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+
+        int minX = Math.min(tl.getX(), br.getX());
+        int maxX = Math.max(tl.getX(), br.getX());
+        int minY = Math.min(tl.getY(), br.getY());
+        int maxY = Math.max(tl.getY(), br.getY());
+
+        return (x >= minX && x <= maxX && y >= minY && y <= maxY);
     }
 
     public void move(MouseEvent last_e, MouseEvent current_e) {
         if (tl.inPoint(last_e)){
             tl.move(last_e, current_e);
             bl.moveX(last_e, current_e);
-            tl.moveY(last_e, current_e);
+            tr.moveY(last_e, current_e);
         }
         else if (tr.inPoint(last_e)){
             tr.move(last_e, current_e);

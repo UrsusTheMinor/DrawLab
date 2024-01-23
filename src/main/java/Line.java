@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
@@ -20,7 +21,14 @@ public class Line extends Figure implements Serializable {
         } else if (start.inPoint(lastE)) {
             start.move(lastE, currentE);
         } else if (center.inPoint(lastE)){
-            center.move(La);
+            end.move(lastE, currentE);
+            start.move(lastE, currentE);
+            center.move(lastE, currentE);
         }
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        g.drawLine();
     }
 }

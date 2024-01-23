@@ -54,7 +54,7 @@ public class FrmMain extends JFrame {
 
         JMenu miOpen = new JMenu("Open");
 
-        JMenuItem openBin = new JMenuItem("Open");
+        JMenuItem openBin = new JMenuItem("Open Binary");
         openBin.setAccelerator(KeyStroke.getKeyStroke("control O"));
         openBin.addActionListener(new ActionListener() {
             @Override
@@ -63,7 +63,7 @@ public class FrmMain extends JFrame {
             }
         });
 
-        JMenuItem openTxt = new JMenuItem("Open");
+        JMenuItem openTxt = new JMenuItem("Open Text");
         openTxt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,7 +76,7 @@ public class FrmMain extends JFrame {
 
         JMenu miSave = new JMenu("Save");
 
-        JMenuItem saveBin = new JMenuItem("Save", KeyEvent.VK_S);
+        JMenuItem saveBin = new JMenuItem("Save Binary", KeyEvent.VK_S);
         saveBin.setAccelerator(KeyStroke.getKeyStroke("control S"));
         saveBin.addActionListener(new ActionListener() {
             @Override
@@ -85,8 +85,8 @@ public class FrmMain extends JFrame {
             }
         });
 
-        JMenuItem saveTxt = new JMenuItem("Save", KeyEvent.VK_S);
-        saveBin.addActionListener(new ActionListener() {
+        JMenuItem saveTxt = new JMenuItem("Save Text", KeyEvent.VK_S);
+        saveTxt.addActionListener(new ActionListener() {  // minor bug fix: opened two file choosers at once
             @Override
             public void actionPerformed(ActionEvent e) {
                 save(TXT);
@@ -189,25 +189,22 @@ public class FrmMain extends JFrame {
     }
 
     public void save(int type) {
-
-        FileFilter filter = binFileFilter;
-        if(type == 1)
-            filter = txtFileFilter;
+        FileFilter filter = (type == 1) ? txtFileFilter : binFileFilter;
 
         JFileChooser fc = new JFileChooser();
         fc.addChoosableFileFilter(filter);
+        fc.setFileFilter(filter);
         if (fc.showSaveDialog(FrmMain.this) == JFileChooser.APPROVE_OPTION) {
-            panMain.miSave(fc.getSelectedFile().getAbsolutePath());
+            panMain.miSave(fc.getSelectedFile().getAbsolutePath(), type);
         }
     }
 
     public void open(int type) {
-        FileFilter filter = binFileFilter;
-        if(type == 1)
-            filter = txtFileFilter;
+        FileFilter filter = (type == 0) ? binFileFilter: txtFileFilter;
 
         JFileChooser fc = new JFileChooser();
         fc.addChoosableFileFilter(filter);
+        fc.setFileFilter(filter);
         if (fc.showOpenDialog(FrmMain.this) == JFileChooser.APPROVE_OPTION) {
             panMain.miOpen(fc.getSelectedFile().getAbsolutePath());
         }

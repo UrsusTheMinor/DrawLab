@@ -1,7 +1,8 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
-public class Point {
+public class Point implements Serializable {
 
     private int x,y;
     private boolean isSelected;

@@ -72,7 +72,19 @@ public class PanMain extends JPanel {
         repaint();
     }
 
-    public void miSave(String filename) {
+    public void miSave(String filename, int type) {
+        if (type == 0 && !filename.endsWith(".bin"))
+            filename += ".bin";
+        else if (type == 1 && !filename.endsWith(".txt"))
+            filename += ".txt";
+
+        /*
+         heheheha I love ternary operator
+         above could be:
+         filename += (type == 0 && !filename.endsWith(".bin")) ? ".bin" :
+         (type == 1 && !filename.endsWith(".txt")) ? ".txt" : "";
+        */
+
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
             oos.writeObject(figures);

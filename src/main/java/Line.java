@@ -15,6 +15,12 @@ public class Line extends Figure implements Serializable {
 
     @Override
     public void move(MouseEvent lastE, MouseEvent currentE) {
-        
+        if(end.inPoint(lastE)){
+            end.move(lastE, currentE);
+        } else if (start.inPoint(lastE)) {
+            start.move(lastE, currentE);
+        } else if (center.inPoint(lastE)){
+            center.move(La);
+        }
     }
 }

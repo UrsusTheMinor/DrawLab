@@ -3,10 +3,8 @@ import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
 public class Point implements Serializable {
-
     private int x,y;
     private boolean isSelected;
-
     public static final int SIZE = 10;
     public static final Color backColor = new Color(236,236,236);
 
@@ -37,49 +35,27 @@ public class Point implements Serializable {
 
     public boolean inPoint(int x, int y) {
         return(
-                        (getX() - SIZE / 2 <= x) &&
-                        (x <= getX() + SIZE / 2) &&
-                        (getY() - SIZE / 2 <= y) &&
-                        (y <= getY() + SIZE / 2)
+                (getX() - SIZE / 2 <= x) &&
+                (x <= getX() + SIZE / 2) &&
+                (getY() - SIZE / 2 <= y) &&
+                (y <= getY() + SIZE / 2)
         );
     }
 
     public boolean nearPoint(int x, int y) {
         return(
                 (getX() - SIZE <= x) &&
-                        (x <= getX() + SIZE) &&
-                        (getY() - SIZE <= y) &&
-                        (y <= getY() + SIZE)
+                (x <= getX() + SIZE) &&
+                (getY() - SIZE <= y) &&
+                (y <= getY() + SIZE)
         );
-    }
-
-    public void set(int x, int y) {
-        setX(x);
-        setY(y);
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public void paint(Graphics g) {
         g.setColor(backColor);
-        g.fillOval(getX() - SIZE / 2, getY() - SIZE /2, SIZE, SIZE );
+        g.drawOval(getX() - SIZE / 2, getY() - SIZE /2, SIZE, SIZE );
         g.setColor(Color.BLACK);
         g.fillOval(getX() - SIZE / 2, getY() - SIZE /2, SIZE, SIZE );
-
     }
 
     public void move(MouseEvent lastE, MouseEvent currentE) {
@@ -107,4 +83,24 @@ public class Point implements Serializable {
         );
     }
 
+    public void set(int x, int y) {
+        setX(x);
+        setY(y);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 }

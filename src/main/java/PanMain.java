@@ -29,6 +29,9 @@ public class PanMain extends JPanel {
                         case Figure.LINE:
                             current_figure = new Line(e);
                             break;
+                        case Figure.POINT:
+                            current_figure = new FigurePoint(e);
+                            break;
                         default:
                             throw new RuntimeException("Figure not found");
                     }
@@ -82,7 +85,7 @@ public class PanMain extends JPanel {
          heheheha I love ternary operator
          above could be:
          filename += (type == 0 && !filename.endsWith(".bin")) ? ".bin" :
-         (type == 1 && !filename.endsWith(".txt")) ? ".txt" : "";
+                     (type == 1 && !filename.endsWith(".txt")) ? ".txt" : "";
         */
 
         try {

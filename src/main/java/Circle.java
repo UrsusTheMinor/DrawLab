@@ -10,8 +10,8 @@ public class Circle extends Figure implements Serializable {
         super(e);
         center = new Point(e);
         radius = new Point(e);
-        points.add(center);
-        points.add(radius);
+        add(center);
+        add(radius);
     }
 
     public void move(MouseEvent last_e, MouseEvent current_e){
@@ -33,15 +33,14 @@ public class Circle extends Figure implements Serializable {
         radius.paint(g);
     }
 
+    public boolean inFigure(MouseEvent e){
+        return inPoint(e) != null || center.getDistance(e) < getRadius();
+    }
+
     public int getRadius() {
         int dx = center.getX() - center.getY();
         int dy = radius.getX() - radius.getY();
 
         return (int) Math.round(Math.sqrt(dx * dx + dy * dy));
     }
-
-    public boolean inFigure(MouseEvent e){
-        return inPoint(e) != null || center.getDistance(e) < getRadius();
-    }
-
 }

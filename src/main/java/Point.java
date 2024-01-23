@@ -82,6 +82,16 @@ public class Point {
     }
 
     public void move(MouseEvent lastE, MouseEvent currentE) {
+        moveX(lastE, currentE);
+        moveY(lastE, currentE);
+    }
+
+    public void moveX(MouseEvent lastE, MouseEvent currentE) {
+        setX(getX() + currentE.getX() - lastE.getX());
+    }
+
+    public void moveY(MouseEvent lastE, MouseEvent currentE) {
+        setY(getY() + currentE.getY() - lastE.getY());
     }
 
     public boolean inPoint(MouseEvent e) {
@@ -95,4 +105,5 @@ public class Point {
                 Math.pow(getY() - e.getY(), 2)
         );
     }
+
 }

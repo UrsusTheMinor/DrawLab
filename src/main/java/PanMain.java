@@ -16,6 +16,7 @@ public class PanMain extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+                last_e = e;
                 current_figure = figures.getFigure(e);
                 if(current_figure == null){
                     switch (figure_type){
@@ -33,6 +34,7 @@ public class PanMain extends JPanel {
                     }
                     figures.addFigure(current_figure);
                 }
+                repaint();
             }
         });
 
@@ -41,6 +43,7 @@ public class PanMain extends JPanel {
             public void mouseDragged(MouseEvent e) {
                 current_figure.move(last_e, e);
                 last_e = e;
+                repaint();
             }
         });
     }
@@ -78,5 +81,9 @@ public class PanMain extends JPanel {
             throw new RuntimeException(e);
         }
         repaint();
+    }
+
+    public void setFigureType(int figure_type) {
+        this.figure_type = figure_type;
     }
 }

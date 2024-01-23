@@ -12,13 +12,14 @@ public abstract class Figure implements Serializable {
     public static final int CIRCLE = 0;
     public static final int RECTANGLE = 1;
     public static final int LINE = 2;
+    public static final int POINT = 3;
 
     public Figure(){
         points = new ArrayList<>();
     }
 
     public Figure(MouseEvent e){
-        super();
+        this();
     }
     public abstract void move(MouseEvent lastE, MouseEvent currentE) ;
 
@@ -64,7 +65,7 @@ public abstract class Figure implements Serializable {
 
     public abstract boolean inFigure(MouseEvent e);
 
-    public void set(Point p) {
+    public void add(Point p) {
         this.points.add((new Point(p.getX(), p.getY())));
     }
 

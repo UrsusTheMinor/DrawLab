@@ -18,8 +18,10 @@ public class Line extends Figure implements Serializable {
     public void move(MouseEvent lastE, MouseEvent currentE) {
         if(end.inPoint(lastE)){
             end.move(lastE, currentE);
+            calculateCenter();
         } else if (start.inPoint(lastE)) {
             start.move(lastE, currentE);
+            calculateCenter();
         } else if (center.inPoint(lastE)){
             end.move(lastE, currentE);
             start.move(lastE, currentE);
@@ -31,7 +33,25 @@ public class Line extends Figure implements Serializable {
     public void paint(Graphics g) {
         g.drawLine(
                 start.getX(),
-                start.getY()
+                start.getY(),
+                end.getX(),
+                end.getY()
         );
+        for(Point p : points){
+            p.paint(g);
+        }
+    }
+
+    private void calculateCenter(){
+        center.set(
+                (start.getX() + end.getX())/2,
+                (start.getY() + end.getY())/2
+        );
+    }
+
+
+    @Override
+    public boolean inFigure(MouseEvent e){
+        return inPoint(e) != null;
     }
 }

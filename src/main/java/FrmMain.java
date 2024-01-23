@@ -11,6 +11,8 @@ public class FrmMain extends JFrame {
 
     private PanMain panMain = new PanMain();
 
+    private ColorDialog colorDialog = new ColorDialog(this);
+
     private final FileFilter txtFileFilter = new FileFilter() {
         @Override
         public boolean accept(File f) {
@@ -121,6 +123,36 @@ public class FrmMain extends JFrame {
         JRadioButton miLine = new JRadioButton("Line");
         JRadioButton miCircle = new JRadioButton("Circle");
         JRadioButton miRectangle = new JRadioButton("Rectangle");
+        miRectangle.setSelected(true);
+
+        miPoint.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panMain.setFigureType(Figure.POINT);
+            }
+        });
+
+        miLine.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panMain.setFigureType(Figure.LINE);
+            }
+        });
+
+        miCircle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panMain.setFigureType(Figure.CIRCLE);
+            }
+        });
+
+        miRectangle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panMain.setFigureType(Figure.RECTANGLE);
+            }
+        });
+
 
         ButtonGroup bgType = new ButtonGroup();
         bgType.add(miPoint);
@@ -135,7 +167,12 @@ public class FrmMain extends JFrame {
 
 
         JMenuItem miColor = new JMenuItem("Color");
-
+        miColor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorDialog.toggleVisibility();
+            }
+        });
         menOptions.add(menType);
         menOptions.add(miColor);
 

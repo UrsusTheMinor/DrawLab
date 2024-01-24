@@ -54,6 +54,6 @@ public class Line extends Figure implements Serializable {
 
     @Override
     public boolean inFigure(MouseEvent e){
-        return inPoint(e) != null;
+        return containsPoint(e);
     }
 }

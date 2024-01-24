@@ -19,7 +19,7 @@ public class Circle extends Figure implements Serializable {
             radius.move(last_e, current_e);
         } else if(center.inPoint(last_e)){
             center.move(last_e, current_e);
-        } if(inFigure(last_e)) {
+        } else if(inFigure(last_e)) {
             center.move(last_e, current_e);
             radius.move(last_e, current_e);
         }
@@ -34,7 +34,7 @@ public class Circle extends Figure implements Serializable {
     }
 
     public boolean inFigure(MouseEvent e){
-        return inPoint(e) != null || center.getDistance(e) < getRadius();
+        return containsPoint(e) || center.getDistance(e) < getRadius();
     }
 
     public int getRadius() {

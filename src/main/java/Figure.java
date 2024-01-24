@@ -43,18 +43,18 @@ public abstract class Figure implements Serializable {
 //        }
 //    }
 
-    public Point inPoint(int x, int y) {
+    public Point containsPoint(int x, int y) {
         for (Point p : points)
             if (p.inPoint(x, y))
                 return p;
         return null;
     }
 
-    public Point inPoint(MouseEvent e) {
+    public boolean containsPoint(MouseEvent e) {
         for (Point p : points)
-            if (p.inPoint(e.getX(), e.getY()))
-                return p;
-        return null;
+            if (p.inPoint(e))
+                return true;
+        return false;
     }
 
     public void paintPoints(Graphics g) {

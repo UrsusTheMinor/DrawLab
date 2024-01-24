@@ -44,7 +44,7 @@ public class Rectangle extends  Figure implements Serializable {
         int minY = Math.min(tl.getY(), br.getY());
         int maxY = Math.max(tl.getY(), br.getY());
 
-        return (x >= minX && x <= maxX && y >= minY && y <= maxY);
+        return containsPoint(e) || (x >= minX && x <= maxX && y >= minY && y <= maxY);
     }
 
     public void move(MouseEvent last_e, MouseEvent current_e) {

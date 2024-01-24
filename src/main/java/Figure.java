@@ -65,8 +65,8 @@ public abstract class Figure implements Serializable {
 
     public abstract boolean inFigure(MouseEvent e);
 
-    public void add(Point p) {
-        this.points.add((new Point(p.getX(), p.getY())));
+    protected void add(Point p) {
+        this.points.add(p);
     }
 
 

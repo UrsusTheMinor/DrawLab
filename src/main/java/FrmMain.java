@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
+import java.awt.*;
 import java.io.File;
 import java.awt.event.*;
 
@@ -8,10 +9,9 @@ public class FrmMain extends JFrame {
     private static final int BIN = 0;
     private static final int TXT = 1;
 
-    private PanMain panMain = new PanMain();
+    private static PanMain panMain = new PanMain();
 
     private ColorDialog colorDialog = new ColorDialog(this);
-
     private final FileFilter txtFileFilter = new FileFilter() {
         @Override
         public boolean accept(File f) {
@@ -41,6 +41,7 @@ public class FrmMain extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("DrawLab - Alam | Papp | Behr");
+
 
         JMenuItem miNew = new JMenuItem("New", KeyEvent.VK_N);
         miNew.setAccelerator(KeyStroke.getKeyStroke("control N"));
@@ -201,6 +202,14 @@ public class FrmMain extends JFrame {
         if (fc.showOpenDialog(FrmMain.this) == JFileChooser.APPROVE_OPTION) {
             panMain.miOpen(fc.getSelectedFile().getAbsolutePath());
         }
+    }
+
+    public static void setBorderColor(Color c) {
+        panMain.setBorderColor(c);
+    }
+
+    public static void setFillColor(Color c) {
+        panMain.setFillColor(c);
     }
 
 

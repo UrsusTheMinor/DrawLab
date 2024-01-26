@@ -28,6 +28,13 @@ public class Circle extends Figure implements Serializable {
     public void paint(Graphics g) {
         int r = getRadius();
 
+
+        if(fillColor != null) {
+            g.setColor(fillColor);
+            g.fillOval(center.getX() - r, center.getY() - r, 2 * r, 2 * r);
+        }
+
+        g.setColor(borderColor);
         g.drawOval(center.getX() - r, center.getY() - r, 2 * r, 2 * r);
         center.paint(g);
         radius.paint(g);

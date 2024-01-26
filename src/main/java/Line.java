@@ -33,6 +33,7 @@ public class Line extends Figure implements Serializable {
 
     @Override
     public void paint(Graphics g) {
+        g.setColor(borderColor);
         g.drawLine(
                 start.getX(),
                 start.getY(),

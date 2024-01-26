@@ -14,6 +14,12 @@ public abstract class Figure implements Serializable {
     public static final int LINE = 2;
     public static final int POINT = 3;
 
+
+    private boolean isSelected = false;
+
+    public Color borderColor = new Color(0,0,0);
+    public Color fillColor = null;
+
     public Figure(){
         points = new ArrayList<>();
     }
@@ -70,4 +76,25 @@ public abstract class Figure implements Serializable {
     }
 
 
+    public void setBorderColor(Color borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    public void setFillColor(Color fillColor) {
+        this.fillColor = fillColor;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+        for(Point p : points){
+            p.setSelected(selected);
+        }
+    }
+
+    public Point inPoint(MouseEvent e) {
+        for (Point p : points)
+            if (p.inPoint(e))
+                return p;
+        return null;
+    }
 }

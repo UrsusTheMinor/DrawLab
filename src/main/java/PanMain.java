@@ -17,6 +17,9 @@ public class PanMain extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                if(e.isControlDown())
+                    return;
                 last_e = e;
                 current_figure = figures.getFigure(e);
                 if(current_figure == null){
@@ -42,6 +45,22 @@ public class PanMain extends JPanel {
             }
         });
 
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (!e.isControlDown())
+                    return;
+                current_figure = figures.getFigure(e);
+                if(current_figure != null) {
+                    figures.toggleSelected(current_figure);
+                } else {
+                    figures.clearSelected();
+                }
+                repaint();
+            }
+        });
+
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
@@ -50,6 +69,8 @@ public class PanMain extends JPanel {
                 repaint();
             }
         });
+
+
     }
 
     @Override
@@ -101,5 +122,19 @@ public class PanMain extends JPanel {
 
     public void setFigureType(int figure_type) {
         this.figure_type = figure_type;
+    }
+
+    public void setBorderColor(Color color){
+        if(current_figure != null){
+            figures.setBorderColor(color);
+            repaint();
+        }
+    }
+
+    public void setFillColor(Color color){
+        if(current_figure != null){
+            figures.setFillColor(color);
+            repaint();
+        }
     }
 }

@@ -7,13 +7,20 @@ public class ColorDialog extends JDialog {
 
     public ColorDialog(JFrame parent) {
         super(parent, "Color", false);
-        setSize(300, 300);
+        setSize(800, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setModalityType(ModalityType.MODELESS);
+
 
         setContentPane(panColorPicker);
     }
 
     public void toggleVisibility() {
         setVisible(!isVisible());
+    }
+
+    public static void main(String[] args) {
+        ColorDialog colorDialog = new ColorDialog(null);
+        colorDialog.toggleVisibility();
     }
 }

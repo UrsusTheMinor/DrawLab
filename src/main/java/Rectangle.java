@@ -19,9 +19,18 @@ public class Rectangle extends  Figure implements Serializable {
     }
 
     public void paint(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.drawRect(tl.getX() - SIZE / 2, br.getY() - SIZE / 2, SIZE, SIZE);
 
+        if(fillColor != null) {
+            g.setColor(fillColor);
+            g.fillRect(
+                    Math.min(tl.getX(), br.getX()),
+                    Math.min(tl.getY(), br.getY()),
+                    Math.abs(tl.getX() - br.getX()),
+                    Math.abs(tl.getY() - br.getY())
+            );
+        }
+
+        g.setColor(borderColor);
         // Draw lines between points
         g.drawLine(tl.getX(), tl.getY(), tr.getX(), tr.getY());
         g.drawLine(tr.getX(), tr.getY(), br.getX(), br.getY());
@@ -33,6 +42,8 @@ public class Rectangle extends  Figure implements Serializable {
         tr.paint(g);
         bl.paint(g);
         br.paint(g);
+
+
     }
 
     public boolean inFigure(MouseEvent e) {

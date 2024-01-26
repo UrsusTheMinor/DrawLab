@@ -7,7 +7,8 @@ public class Point implements Serializable {
     private int x,y;
     private boolean isSelected;
     public static final int SIZE = 50;
-    public static final Color backColor = new Color(236,236,236);
+    public static Color borderColor = new Color(0,0,0);
+    public static Color backColor = new Color(236,236,236);
 
     public Point(int x, int y) {
         set(x,y);
@@ -53,6 +54,12 @@ public class Point implements Serializable {
     }
 
     public void paint(Graphics g) {
+
+        if(isSelected) {
+            g.setColor(Color.BLACK);
+            g.drawRect(getX() - SIZE / 2, getY() - SIZE /2, SIZE, SIZE);
+        }
+
         g.setColor(backColor);
         g.drawOval(getX() - SIZE / 2, getY() - SIZE /2, SIZE, SIZE );
         g.setColor(Color.BLACK);
@@ -103,5 +110,9 @@ public class Point implements Serializable {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public void setBorderColor(Color c) {
+        borderColor = c;
     }
 }

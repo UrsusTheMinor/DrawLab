@@ -36,21 +36,17 @@ public class Point implements Serializable {
     }
 
     public boolean inPoint(int x, int y) {
-        return(
-                (getX() - SIZE / 2 <= x) &&
-                (x <= getX() + SIZE / 2) &&
-                (getY() - SIZE / 2 <= y) &&
-                (y <= getY() + SIZE / 2)
-        );
+        return  diff(x, y) <= SIZE/2;
     }
 
     public boolean nearPoint(int x, int y) {
-        return(
-                (getX() - SIZE <= x) &&
-                (x <= getX() + SIZE) &&
-                (getY() - SIZE <= y) &&
-                (y <= getY() + SIZE)
-        );
+        return  diff(x, y) <= SIZE;
+    }
+
+    public int diff(int x, int y) {
+        int dx = getX() - x;
+        int dy = getY() - y;
+        return (int)Math.round(Math.sqrt(dx*dx + dy*dy));
     }
 
     public void paint(Graphics g) {

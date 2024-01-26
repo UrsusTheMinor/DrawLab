@@ -22,24 +22,28 @@ public class PanMain extends JPanel {
                     return;
                 last_e = e;
                 current_figure = figures.getFigure(e);
-                if(current_figure == null){
-                    switch (figure_type){
-                        case Figure.CIRCLE:
-                            current_figure = new Circle(e);
-                            break;
-                        case Figure.RECTANGLE:
-                            current_figure = new Rectangle(e);
-                            break;
-                        case Figure.LINE:
-                            current_figure = new Line(e);
-                            break;
-                        case Figure.POINT:
-                            current_figure = new FigurePoint(e);
-                            break;
-                        default:
-                            throw new RuntimeException("Figure not found");
+                if(current_figure == null) {
+                    if (figures.getPoint(e) != null) {
+                        figures.movePoint(figures.getPoint(e), last_e, e);
+                    } else {
+                        switch (figure_type) {
+                            case Figure.CIRCLE:
+                                current_figure = new Circle(e);
+                                break;
+                            case Figure.RECTANGLE:
+                                current_figure = new Rectangle(e);
+                                break;
+                            case Figure.LINE:
+                                current_figure = new Line(e);
+                                break;
+                            case Figure.POINT:
+                                current_figure = new FigurePoint(e);
+                                break;
+                            default:
+                                throw new RuntimeException("Figure not found");
+                        }
+                        figures.addFigure(current_figure);
                     }
-                    figures.addFigure(current_figure);
                 }
                 repaint();
             }
@@ -64,9 +68,11 @@ public class PanMain extends JPanel {
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                current_figure.move(last_e, e);
-                last_e = e;
-                repaint();
+                if (current_figure != null) {
+                    current_figure.move(last_e, e);
+                    last_e = e;
+                    repaint();
+                }
             }
         });
 

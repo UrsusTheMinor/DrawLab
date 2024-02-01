@@ -37,7 +37,7 @@ public class FrmMain extends JFrame {
     };
 
     public FrmMain() {
-        setSize(1154,600);
+        setSize(1154,800);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("DrawLab - Alam | Papp | Behr");

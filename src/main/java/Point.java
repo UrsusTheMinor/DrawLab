@@ -6,7 +6,7 @@ public class Point implements Serializable {
 
     private int x,y;
     private boolean isSelected;
-    public static final int SIZE = 50;
+    public static final int SIZE = 20;
     public static Color borderColor = new Color(0,0,0);
     public static Color backColor = new Color(236,236,236);
 
